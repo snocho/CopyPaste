@@ -89,6 +89,7 @@
                   HorizontalAlignment="Left">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Minimize" Click="btn_minimize_Click"/>
+                    <MenuItem Header="_Clear" Command="{Binding ClearListCommand}"/>
                     <MenuItem Header="_Close" Click="btn_exit_Click"/>
                 </MenuItem>
             </Menu>
