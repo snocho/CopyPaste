@@ -1,35 +1,32 @@
 ﻿namespace CopyPaste.Models
 {
-    using CopyPaste.Commands;
-    using CopyPaste.ViewModels;
+    using Commands;
+    using ViewModels;
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Windows;
     using System.Windows.Input;
-    using System.Windows.Interop;
 
     public class CopyPasteItem : INotifyPropertyChanged
     {
-        private string _Date;
-        private string _Content;
-        private string _ContentToolTip;
-        private int _Index;
+        private string _date;
+        private string _content;
+        private string _contentToolTip;
+        private int _index;
         private ICommand _copyItemCommand;
-        public static CopyPasteItemViewModel _cpivm;
+        public static CopyPasteItemViewModel Cpivm;
 
-        public CopyPasteItem(string Date, string Content, string ContentToolTip, int Index)
+        public CopyPasteItem(string date, string content, string contentToolTip, int index)
         {
-            this._Date = Date;
-            this._Content = Content;
-            this._ContentToolTip = ContentToolTip;
-            this._Index = Index;
+            this._date = date;
+            this._content = content;
+            this._contentToolTip = contentToolTip;
+            this._index = index;
         }
 
         public CopyPasteItem(CopyPasteItemViewModel cpivm)
         {
-            _cpivm = cpivm;
+            Cpivm = cpivm;
         }
 
         public ICommand CopyItemCommand
@@ -39,47 +36,47 @@
 
         public void CopyItemFromList(string content)
         {
-            _cpivm.CloseCBViewer();
+            Cpivm.CloseCbViewer();
             System.Windows.Clipboard.SetText(content);
-            _cpivm.InitCBViewer();
+            Cpivm.InitCbViewer();
         }
 
         public string Date
         {
-            get { return _Date; }
+            get { return _date; }
             set
             {
-                _Date = value;
+                _date = value;
                 OnPropertyChanged("Date");
             }
         }
 
         public string Content
         {
-            get { return _Content; }
+            get { return _content; }
             set
             {
-                _Content = value;
+                _content = value;
                 OnPropertyChanged("Content");
             }
         }
 
         public string ContentToolTip
         {
-            get { return _ContentToolTip; }
+            get { return _contentToolTip; }
             set
             {
-                _ContentToolTip = value;
+                _contentToolTip = value;
                 OnPropertyChanged("ContentToolTip");
             }
         }
 
         public int Index
         {
-            get { return _Index; }
+            get { return _index; }
             set
             {
-                _Index = value;
+                _index = value;
                 OnPropertyChanged("Index");
             }
         }

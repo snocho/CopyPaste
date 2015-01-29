@@ -1,11 +1,8 @@
 ﻿namespace CopyPaste.Commands
 {
-    using System.Windows;
     using System.Windows.Input;
-    using CopyPaste.ViewModels;
     using System;
-    using CopyPaste.Models;
-    using System.Collections.ObjectModel;
+    using Models;
 
     internal class CopyItemFromListCommand : ICommand
     {
@@ -15,8 +12,8 @@
             _canExecute = canExecute;
         }
 
-        private bool _canExecute;
-        private CopyPasteItem _cpi;
+        private readonly bool _canExecute;
+        private readonly CopyPasteItem _cpi;
 
         #region ICommand Members
         public event EventHandler CanExecuteChanged

@@ -1,29 +1,12 @@
 ﻿namespace CopyPaste
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
-    using System.Linq;
-    using System.Runtime.InteropServices;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
     using System.Windows.Forms;
     using System.Windows.Input;
     using System.Windows.Interop;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
-    using System.Windows.Shapes;
-    using System.IO;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using CopyPaste.Models;
-    using System.Diagnostics;
-    using CopyPaste.ViewModels;
+    using ViewModels;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -32,8 +15,8 @@
     {
         #region Private Fields
 
-        private NotifyIcon ni = new NotifyIcon();
-        private CopyPasteItemViewModel _vm;
+        private NotifyIcon _ni = new NotifyIcon();
+        private readonly CopyPasteItemViewModel _vm;
         #endregion
 
         #region Constructor
@@ -72,12 +55,12 @@
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            _vm.CloseCBViewer();
+            _vm.CloseCbViewer();
         }
 
         private void OnLoad(object sender, EventArgs e)
         {
-            _vm.InitCBViewer();
+            _vm.InitCbViewer();
         }
 
         #endregion

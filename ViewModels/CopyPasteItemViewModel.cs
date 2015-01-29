@@ -11,7 +11,7 @@
         #region Private Fields
         private IntPtr _hWndNextViewer;
         private HwndSource _hWndSource;
-        private WindowInteropHelper _wih;
+        private readonly WindowInteropHelper _wih;
         private readonly ObservableCollection<CopyPasteItem> _list = new ObservableCollection<CopyPasteItem>();
         #endregion
 
@@ -32,15 +32,16 @@
         }
 
         #region Clipboard viewer related methods
-        public void InitCBViewer()
+        public void InitCbViewer()
         {
             _hWndSource = HwndSource.FromHwnd(_wih.Handle);
 
+            if (_hWndSource == null) return;
             _hWndSource.AddHook(this.WinProc);   // start processing window messages 
             _hWndNextViewer = Win32.SetClipboardViewer(_hWndSource.Handle);   // set this window as a viewer 
         }
 
-        public void CloseCBViewer()
+        public void CloseCbViewer()
         {
             // remove this window from the clipboard viewer chain
             Win32.ChangeClipboardChain(_hWndSource.Handle, _hWndNextViewer);
@@ -53,7 +54,7 @@
         {
             switch (msg)
             {
-                case Win32.WM_CHANGECBCHAIN:
+                case Win32.WmChangecbchain:
                     if (wParam == _hWndNextViewer)
                     {
                         // clipboard viewer chain changed, need to fix it. 
@@ -66,7 +67,7 @@
                     }
                     break;
 
-                case Win32.WM_DRAWCLIPBOARD:
+                case Win32.WmDrawclipboard:
                     // clipboard content changed
                     CopyPasteItem itm = CreateNewCopyPasteItem();
                     itm.AddToCopyPasteItemsList(_list);

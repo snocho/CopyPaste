@@ -113,12 +113,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\test.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\copy_paste.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Icons\test2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -42,9 +42,6 @@
                         <RowDefinition Height="50px"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
                     <TextBlock x:Name="tb_item" 
                         Grid.Row="0" 
                         Grid.Column="0" 
@@ -87,21 +84,16 @@
             <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <DockPanel>
             <Menu DockPanel.Dock="Top" 
-                  HorizontalAlignment="Left" 
-                  Grid.Row="0" 
-                  Grid.Column="0">
+                  HorizontalAlignment="Left">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Minimize" Click="btn_minimize_Click"/>
                     <MenuItem Header="_Close" Click="btn_exit_Click"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <tb:TaskbarIcon tb:Name="notify_tray"  ToolTip="CopyPaste" TrayMouseDoubleClick="notify_tray_Click"/>
+        <tb:TaskbarIcon Grid.Row="0" tb:Name="notify_tray"  ToolTip="CopyPaste" TrayMouseDoubleClick="notify_tray_Click"/>
         <ListBox
                 Grid.Row="1" 
                 Grid.Column="0"
