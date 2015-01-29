@@ -40,7 +40,7 @@
         private void btn_minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = System.Windows.WindowState.Minimized;
-            this.notify_tray.Icon = new Icon(@"Icons/test2.ico");
+            this._ni.Icon = new Icon(@"Icons/test2.ico");
         }
 
         private void notify_tray_Click(object sender, RoutedEventArgs e)
