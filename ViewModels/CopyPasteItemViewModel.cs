@@ -4,7 +4,6 @@ namespace CopyPaste.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Windows.Forms;
     using System.Windows.Interop;
     using Models;
     using System.Windows.Input;
