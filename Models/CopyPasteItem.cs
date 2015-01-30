@@ -106,6 +106,7 @@ namespace CopyPaste.Models
             list.Insert(0, this);
             return;
         }
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
