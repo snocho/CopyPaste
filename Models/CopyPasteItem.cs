@@ -1,4 +1,6 @@
-﻿namespace CopyPaste.Models
+﻿using System.Globalization;
+
+namespace CopyPaste.Models
 {
     using Commands;
     using ViewModels;
@@ -83,23 +85,26 @@
 
         public void AddToCopyPasteItemsList(ObservableCollection<CopyPasteItem> list)
         {
-            if (System.Windows.Clipboard.ContainsText())
+            if (!System.Windows.Clipboard.ContainsText()) return;
+            var content = System.Windows.Clipboard.GetText();
+            if (list.Count == 0)
             {
-                this.Date = "#" + (list.Count + 1).ToString() + "@" + DateTime.Now.ToString("HH:mm:ss tt");
+                this.Date = "#" + (list.Count + 1).ToString(CultureInfo.InvariantCulture) + "@" +
+                            DateTime.Now.ToString("HH:mm:ss tt");
                 this.Index = list.Count + 1;
-                this.Content = System.Windows.Clipboard.GetText();
-                this.ContentToolTip = this.Content.Substring(0, this.Content.Length > 255 ? 255 : this.Content.Length);
+                this.Content = content;
+                this.ContentToolTip = content.Substring(0, this.Content.Length > 255 ? 255 : content.Length);
                 list.Insert(0, this);
+                return;
             }
-
-            if (System.Windows.Clipboard.ContainsAudio() || System.Windows.Clipboard.ContainsFileDropList() || System.Windows.Clipboard.ContainsImage())
-            {
-                //_itm = new CopyPasteItem();
-                this.Date = "#" + (list.Count + 1).ToString() + "@" + DateTime.Now.ToString("HH:mm:ss tt");
-                this.Index = list.Count + 1;
-                this.Content = "The type of the data in the clipboard is not supported by this sample.";
-                list.Insert(0, this);
-            }
+            if (list[0].Content.Equals(content)) return;
+            this.Date = "#" + (list.Count + 1).ToString(CultureInfo.InvariantCulture) + "@" +
+                        DateTime.Now.ToString("HH:mm:ss tt");
+            this.Index = list.Count + 1;
+            this.Content = content;
+            this.ContentToolTip = content.Substring(0, this.Content.Length > 255 ? 255 : content.Length);
+            list.Insert(0, this);
+            return;
         }
 
         #region INotifyPropertyChanged Members

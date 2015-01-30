@@ -1,10 +1,12 @@
-﻿namespace CopyPaste.ViewModels
+﻿using CopyPaste.Commands;
+
+namespace CopyPaste.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Windows.Forms;
     using System.Windows.Interop;
     using Models;
+    using System.Windows.Input;
 
     public class CopyPasteItemViewModel
     {
@@ -13,6 +15,7 @@
         private HwndSource _hWndSource;
         private readonly WindowInteropHelper _wih;
         private readonly ObservableCollection<CopyPasteItem> _list = new ObservableCollection<CopyPasteItem>();
+        private ICommand _clearListCommand;
         #endregion
 
         public CopyPasteItemViewModel(WindowInteropHelper wih)
@@ -30,6 +33,11 @@
         {
             get { return _list; }
         }
+
+        public ICommand ClearListCommand
+        {
+            get { return _clearListCommand = new ClearListCommand(true, this); }
+        } 
 
         #region Clipboard viewer related methods
         public void InitCbViewer()
@@ -77,6 +85,11 @@
             }
 
             return IntPtr.Zero;
+        }
+
+        public void ClearList()
+        {
+            _list.Clear();
         }
 
         #endregion
